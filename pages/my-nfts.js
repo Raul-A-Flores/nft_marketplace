@@ -70,7 +70,7 @@ const MyNFTs = () => {
     <div className="w-full felx justify-start items-center flex-col min-h-screen">
       <div className="w-full flexCenter flex-col">
         <Banner
-          name="Your nifty NFTs"
+          name="Your NFTs"
           childStyles="text-center mb-4"
           parentStyles="h-80 justify-center"
         />
