@@ -15,6 +15,7 @@ export const NFTContext = React.createContext();
 export const NFTProvider = ({ children }) => {
   const [currentAccount, setCurrentAccount] = useState('');
   const nftCurrency = 'ETH';
+  const [isLoadingNFT, setisLoadingNFT] = useState(false);
 
   const checkIFWalletisConnected = async () => {
     if (!window.ethereum) return alert('Please install MetaMask to use this application.');
@@ -73,12 +74,12 @@ export const NFTProvider = ({ children }) => {
       ? await contract.createToken(url, price, { value: listingPrice.toString() })
       : await contract.resellToken(id, price, { value: listingPrice.toString() });
 
+    setisLoadingNFT(true);
     await transaction.wait();
-
-    console.log(contract);
   };
 
   const fetchNFTs = async () => {
+    setisLoadingNFT(false);
     const provider = new ethers.providers.JsonRpcProvider();
     const contract = fetchContract(provider);
 
@@ -105,6 +106,7 @@ export const NFTProvider = ({ children }) => {
   };
 
   const fetchMyNFTsOrListedNFTs = async (type) => {
+    setisLoadingNFT(false);
     const web3Modal = new Web3Modal();
 
     const connection = await web3Modal.connect();
@@ -146,7 +148,9 @@ export const NFTProvider = ({ children }) => {
 
     const transaction = await contract.createMarketSale(nft.tokenId, { value: price, gasLimit: 2000000 });
 
+    setisLoadingNFT(true);
     await transaction.wait();
+    setisLoadingNFT(false);
   };
 
   const createNFT = async (formInput, fileUrl, router) => {
@@ -170,7 +174,7 @@ export const NFTProvider = ({ children }) => {
   };
 
   return (
-    <NFTContext.Provider value={{ nftCurrency, connectWallet, currentAccount, uploadToIPFS, createNFT, fetchNFTs, fetchMyNFTsOrListedNFTs, buyNFT, createSale }}>
+    <NFTContext.Provider value={{ nftCurrency, connectWallet, currentAccount, uploadToIPFS, createNFT, fetchNFTs, fetchMyNFTsOrListedNFTs, buyNFT, createSale, isLoadingNFT }}>
       {children}
     </NFTContext.Provider>
   );

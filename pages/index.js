@@ -131,13 +131,13 @@ const Home = () => {
                     onClick={() => handleScoll('left')}
                     className="absolute w-8 h-8 minlg:w-12 minlg:h-12 top-45 cursor-pointer left-0"
                   >
-                    <Image src={images.left} layout="fill" objectFit="contain" alt="left_arrow" className={theme === 'light' && 'filter invert'} />
+                    <Image src={images.left} layout="fill" objectFit="contain" alt="left_arrow" className={theme === 'light' ? 'filter invert' : ''} />
                   </div>
                   <div
                     onClick={() => handleScoll('right')}
                     className="absolute w-8 h-8 minlg:w-12 minlg:h-12 top-45 cursor-pointer right-0"
                   >
-                    <Image src={images.right} layout="fill" objectFit="contain" alt="right_arrow" className={theme === 'light' && 'filter invert'} />
+                    <Image src={images.right} layout="fill" objectFit="contain" alt="right_arrow" className={theme === 'light' ? 'filter invert' : ''} />
                   </div>
                 </>
               )}

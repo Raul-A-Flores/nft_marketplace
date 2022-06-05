@@ -34,7 +34,7 @@ const Searchbar = ({ activeSelect, setActiveSelect, handleSearch, clearSearch })
           width={20}
           height={20}
           alt="search"
-          className={theme === 'light' && 'filter invert'}
+          className={theme === 'light' ? 'filter invert' : ''}
         />
         <input
           type="text"
@@ -55,7 +55,7 @@ const Searchbar = ({ activeSelect, setActiveSelect, handleSearch, clearSearch })
           width={15}
           height={15}
           alt="arrow"
-          className={theme === 'light' && 'filter invert'}
+          className={theme === 'light' ? 'filter invert' : ''}
 
         />
 
