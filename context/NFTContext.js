@@ -69,7 +69,9 @@ export const NFTProvider = ({ children }) => {
     const contract = fetchContract(signer);
     const listingPrice = await contract.getListingPrice();
 
-    const transaction = await contract.createToken(url, price, { value: listingPrice.toString() });
+    const transaction = !isReselling
+      ? await contract.createToken(url, price, { value: listingPrice.toString() })
+      : await contract.resellToken(id, price, { value: listingPrice.toString() });
 
     await transaction.wait();
 
@@ -142,7 +144,7 @@ export const NFTProvider = ({ children }) => {
     const contract = fetchContract(signer);
     const price = ethers.utils.parseUnits(nft.price.toString(), 'ether');
 
-    const transaction = await contract.createMarketSale(nft.tokenId, { value: price, gasLimit: 1000000 });
+    const transaction = await contract.createMarketSale(nft.tokenId, { value: price, gasLimit: 2000000 });
 
     await transaction.wait();
   };
@@ -163,12 +165,12 @@ export const NFTProvider = ({ children }) => {
 
       router.push('/');
     } catch (error) {
-      console.log('Uploading file to IPFS failed');
+      console.log(error);
     }
   };
 
   return (
-    <NFTContext.Provider value={{ nftCurrency, connectWallet, currentAccount, uploadToIPFS, createNFT, fetchNFTs, fetchMyNFTsOrListedNFTs, buyNFT }}>
+    <NFTContext.Provider value={{ nftCurrency, connectWallet, currentAccount, uploadToIPFS, createNFT, fetchNFTs, fetchMyNFTsOrListedNFTs, buyNFT, createSale }}>
       {children}
     </NFTContext.Provider>
   );

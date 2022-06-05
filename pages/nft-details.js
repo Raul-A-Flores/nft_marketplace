@@ -89,7 +89,7 @@ const NFTdetails = () => {
             <div className="relative w-12 h-12 minlg:w-20 minlg:h-20 mr-2">
               <Image src={images.creator1} objectFit="cover" className="rounded-full" />
             </div>
-            <p className="font-poppins dark:text-white text-nft-black-1 text-sm minlg:text-lg font-semibold">{shortenAddress(nft.seller)}</p>
+            <p className="font-poppins dark:text-white text-nft-black-1 text-sm minlg:text-lg font-semibold">{shortenAddress(nft.owner)}</p>
           </div>
         </div>
 
@@ -168,7 +168,7 @@ const NFTdetails = () => {
               />
             </div>
             <p className="font-poppins dark:text-white text-nft-black-1 font-normal text-sm minlg:text-xl mt-10">
-              You have successfully bought this NFT <span>{nft.name}</span> from <span>{shortenAddress(nft.seller)}</span>
+              You have successfully bought this NFT <span>{nft.name}</span> from <span>{nft.name}</span>
             </p>
           </div>
 )}
@@ -184,7 +184,6 @@ const NFTdetails = () => {
         )}
       />
       )}
-
     </div>
   );
 };
