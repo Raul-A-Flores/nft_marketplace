@@ -44,11 +44,12 @@ const PaymentBodyCmp = ({ nft, nftCurrency }) => (
 );
 
 const NFTdetails = () => {
-  const { currentAccount, nftCurrency } = useContext(NFTContext);
+  const { currentAccount, nftCurrency, buyNFT } = useContext(NFTContext);
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
   const [nft, setNft] = useState({ image: '', tokenId: '', name: '', price: '', seller: '' });
   const [paymentModal, setpaymentModal] = useState(false);
+  const [successModal, setsuccessModal] = useState(false);
 
   useEffect(() => {
     if (!router.isReady) return;
@@ -56,6 +57,13 @@ const NFTdetails = () => {
 
     setIsLoading(false);
   }, [router.isReady]);
+
+  const checkout = async () => {
+    await buyNFT(nft);
+    setpaymentModal(false);
+
+    setsuccessModal(true);
+  };
 
   if (isLoading) return <Loader />;
 
@@ -130,7 +138,7 @@ const NFTdetails = () => {
             <Button
               btnName="Checkout"
               classStyles="mr-5 sm:mb-5 sm:mr-0 rounded-xl"
-              handleClick={() => {}}
+              handleClick={checkout}
             />
             <Button
               btnName="Cancel"
@@ -142,6 +150,41 @@ const NFTdetails = () => {
         handleClose={() => setpaymentModal(false)}
       />
       )}
+
+      {successModal && (
+
+      <Modal
+        header="Payment success"
+        body={(
+          <div
+            className="flexCenter flex-col text-center"
+            onClick={() => setsuccessModal(false)}
+          >
+            <div className="relative w-52 h-52">
+              <Image
+                src={nft.image}
+                objectFit="cover"
+                layout="fill"
+              />
+            </div>
+            <p className="font-poppins dark:text-white text-nft-black-1 font-normal text-sm minlg:text-xl mt-10">
+              You have successfully bought this NFT <span>{nft.name}</span> from <span>{shortenAddress(nft.seller)}</span>
+            </p>
+          </div>
+)}
+        footer={(
+          <div className="flexCenter flex-row sm:flex-col">
+            <Button
+              btnName="Checkout it out"
+              classStyles="sm:mb-5 sm:mr-0 rounded-xl"
+              handleClick={() => router.push('/my-nfts')}
+            />
+          </div>
+
+        )}
+      />
+      )}
+
     </div>
   );
 };
