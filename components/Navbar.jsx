@@ -119,15 +119,16 @@ const Navbar = () => {
             <Image
               src={images.logo02}
               objectFit="contain"
-              width={32}
-              height={32}
+              width={200}
+              height={60}
               alt="logo"
+              margin={0}
             />
-            <p className="dark:text-white
+            {/* <p className="dark:text-white
             text-nft-black-1
             font-semibold text-lg ml-1"
             >CryptoFlo
-            </p>
+            </p> */}
           </div>
         </Link>
         <Link href="/">

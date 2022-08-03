@@ -41,6 +41,8 @@ const MyNFTs = () => {
     }
   }, [activeSelect]);
 
+  /* Global Loading */
+
   if (isLoading) {
     return (
       <div className="flexStart min-h-screen">
@@ -49,6 +51,8 @@ const MyNFTs = () => {
       </div>
     );
   }
+
+  /* Filtering Search Bar */
 
   const onHandleSearch = (value) => {
     const filteredNfts = nfts.filter(({ name }) => name.toLowerCase().includes(value.toLowerCase()));
@@ -83,7 +87,7 @@ const MyNFTs = () => {
             />
 
           </div>
-          <p className="font-poppins text-white text-nft-black-1 font-semibold text-2xl mt-6">{shortenAddress(currentAccount)}</p>
+          <p className="font-poppins dark:text-white text-nft-black-1 font-semibold text-2xl mt-6">{shortenAddress(currentAccount)}</p>
         </div>
 
       </div>
