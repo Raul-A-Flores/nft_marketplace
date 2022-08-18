@@ -1,15 +1,9 @@
-# Basic Sample Hardhat Project
+# CRYPTOFLO 
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts.
+## NFT marketplace built with Next.js , Solidity and Hardhat
 
-Try running some of the following tasks:
-
-```shell
-npx hardhat accounts
-npx hardhat compile
-npx hardhat clean
-npx hardhat test
-npx hardhat node
-node scripts/sample-script.js
-npx hardhat help
-```
+![](./images/Screen%20Shot%202022-08-02%20at%2012.58.54%20PM.png)
+![](./images/Screen%20Shot%202022-08-04%20at%2011.11.25%20AM.png)
+![](./images/Screen%20Shot%202022-08-04%20at%2011.11.40%20AM.png)
+![](./images/Screen%20Shot%202022-08-04%20at%2011.11.25%20AM.png)
+![](./images/Screen%20Shot%202022-08-04%20at%2011.24.05%20AM.png)
