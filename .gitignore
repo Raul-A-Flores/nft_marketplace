@@ -1,6 +1,7 @@
 .secret
 .env
 .env.local
+/constants/constants.js
 
 node_modules
 

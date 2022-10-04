@@ -85,7 +85,7 @@ export const NFTProvider = ({ children }) => {
 
   const fetchNFTs = async () => {
     setisLoadingNFT(false);
-    const provider = new ethers.providers.JsonRpcProvider();
+    const provider = new ethers.providers.JsonRpcProvider(process.env.NEXT_PUBLIC_HTTP_KEY);
     const contract = fetchContract(provider);
 
     const data = await contract.fetchMarketItems();
